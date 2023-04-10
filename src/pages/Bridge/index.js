@@ -26,7 +26,6 @@ import {
   selectReceivedAmount,
   selectExchangeNotice,
   changeReceiveAmountAndNotice,
-  selectChainInfos,
 } from '../../redux/bridge';
 import { sendAtom } from '../../api/sendAtom';
 
@@ -37,6 +36,9 @@ const Bridge = () => {
   const receivedAmount = useSelector(selectReceivedAmount);
   const exchangeNotice = useSelector(selectExchangeNotice);
   const dispatch = useDispatch();
+
+  const [atomAddress, setAtomAddress] = useState("");
+  const [xrpAddress, setXrpAddress] = useState("");
 
   const handleChangeStart = (event) => {
     // useDispatch
@@ -64,23 +66,19 @@ const Bridge = () => {
   };
 
   const handleApprove = () => {
-    sendAtom(address, amount);
+    // sendAtom(address, amount);
   };
 
-  const chainInfo = useSelector(selectChainInfos);
-  const [address, setAddress] = useState('');
+  const handleKplrConnect = (address) => {
+    setAtomAddress(address);
+  }
 
-  useEffect(() => {
-    if (chainInfo && chainInfo['cosmoshub-4']?.accounts.length > 0) {
-      setAddress(chainInfo['cosmoshub-4']?.accounts[0]?.address);
-    }
-    else {
-      setAddress('');
-    }
-  }, chainInfo);
+  const handleXrpConnect = (address) => {
+    setXrpAddress(address);
+  }
 
   return (
-    <div class="bg-white text-base dark:bg-[#181B18] text-neutral-900 dark:text-neutral-200">
+    <div className="bg-white text-base dark:bg-[#181B18] text-neutral-900 dark:text-neutral-200">
       <Wrapper>
         <div className="relative h-screen nc-PageStaking">
           <div className="absolute top-0 left-0 w-screen h-screen overflow-x-hidden">
@@ -102,6 +100,7 @@ const Bridge = () => {
                   handleChangeCoin={handleChangeStart}
                   amount={amount}
                   handleChangeAmount={handleChangeAmount}
+                  handleConnect={handleKplrConnect}
                 />
                 <Box className='relative flex items-center justify-center'>
                   <Divider className='absolute bg-[#555555] top-6 mx-[55px] w-[90%]' />
@@ -115,6 +114,7 @@ const Bridge = () => {
                   handleChangeCoin={handleChangeDest}
                   amount={receivedAmount}
                   handleChangeAmount={handleChangeAmount}
+                  handleConnect={handleXrpConnect}
                   readOnly={true}
                 />
                 <CustomButton handleAction={handleApprove} />

@@ -24,8 +24,6 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: ['GRIFTER', 'sans-serif'].join(','),
-    // fontFamily: 'grifterbold';
-    fontSize: "1rem",
     letterSpacing: "0.0625rem"
   },
   overrides: {

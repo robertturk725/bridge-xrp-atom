@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import XRPSvg  from '../assets/images/xrp.svg'
-import AtomSvg  from '../assets/images/atom.svg'
+import XRPSvg from '../assets/images/xrp.svg'
+import AtomSvg from '../assets/images/atom.svg'
 
 export const bridgeSlice = createSlice({
   name: 'bridge',
@@ -10,10 +10,10 @@ export const bridgeSlice = createSlice({
     amount: "",
     receivedAmount: 0,
     exchangeNotice: "1 XRP = 0.031521 Atom",
-    chainInfos: localStorage.getItem('chainInfos') || {},
+    atomAddress: localStorage.getItem('atomAddress') || {},
     coinList: [
-      {id: 1, name: 'XRP', image: XRPSvg},
-      {id: 2, name: 'Atom', image: AtomSvg},
+      { id: 0, name: 'XRP', image: XRPSvg },
+      { id: 1, name: 'Atom', image: AtomSvg, chainId: "cosmoshub-4" },
     ]
   },
   reducers: {
@@ -26,7 +26,7 @@ export const bridgeSlice = createSlice({
       state.startCoinIdx = state.destCoinIdx;
       state.destCoinIdx = tempIdx;
     },
-    
+
     changeStart: (state, action) => {
       state.destCoinIdx = state.startCoinIdx;
       state.startCoinIdx = action.payload;
@@ -47,11 +47,7 @@ export const bridgeSlice = createSlice({
       state.amount = action.payload;
     },
 
-    changeChainInfos: (state, action) => {
-      state.chainInfos = action.payload;
-    },
-
-    changeReceiveAmountAndNotice:(state) => {
+    changeReceiveAmountAndNotice: (state) => {
       // Calculate received amount.
       // startCoinIdx
       // 0: xrpl -> cosmos
@@ -77,7 +73,7 @@ export const bridgeSlice = createSlice({
   },
 });
 
-export const { swap, changeStart, changeDest, changeAmount, changeReceiveAmountAndNotice, changeChainInfos } = bridgeSlice.actions;
+export const { swap, changeStart, changeDest, changeAmount, changeReceiveAmountAndNotice } = bridgeSlice.actions;
 
 export const selectStartCoinIdx = (state) => state.bridge.startCoinIdx;
 export const selectDestCoinIdx = (state) => state.bridge.destCoinIdx;
@@ -85,6 +81,5 @@ export const selectCoinList = (state) => state.bridge.coinList;
 export const selectAmount = (state) => state.bridge.amount;
 export const selectReceivedAmount = (state) => state.bridge.receivedAmount;
 export const selectExchangeNotice = (state) => state.bridge.exchangeNotice;
-export const selectChainInfos = (state) => state.bridge.chainInfos;
 
 export default bridgeSlice.reducer;

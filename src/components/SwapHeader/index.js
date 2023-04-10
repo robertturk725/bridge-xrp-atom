@@ -7,7 +7,7 @@ import SettingSvg from '../../assets/images/setting.png'
 const Header = () => {
   return (
     <Wrapper>
-      <Container class="header-container">
+      <Container className="header-container">
         <div style={{ width: '3.75rem', height: '3.75rem', maginLeft: '1.25rem' }}> </div>
         <Title>
           Cross-Chain Bridge

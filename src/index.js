@@ -13,13 +13,20 @@ import theme from './config/theme';
 import store from './config/store';
 import * as serviceWorker from './config/serviceWorker';
 import { CosmosProvider } from "@use-web3wallet/cosmos";
+import { XummProvider } from "xumm-react";
 
-const walletOptions = {
+const kplrConfig = {
   "Keplr": {
     // supportedChainIds: ["cosmoshub-4", "juno-1", "osmosis-1"]
     supportedChainIds: ["cosmoshub-4"]
   }
 };
+
+const xummConfig = {
+  url: 'https://xumm.app/api/v1/',
+  getToken: () => "58717494-7586-45eb-96ea-95634ec8d336"
+};
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,9 +35,11 @@ ReactDOM.render(
         <ThemeProvider theme={theme}>
           <Provider store={store}>
             <CssBaseline />
-            <CosmosProvider walletOptions={walletOptions}>
-              <App />
-            </CosmosProvider>
+            <XummProvider config={xummConfig}>
+              <CosmosProvider walletOptions={kplrConfig}>
+                <App />
+              </CosmosProvider>
+            </XummProvider>
           </Provider>
         </ThemeProvider>
       </MuiThemeProvider>
