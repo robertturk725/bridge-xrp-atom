@@ -83,7 +83,7 @@ const ChainItem = (props) => {
             <CoinSelect width={200} coinIdx={coinIdx} label={label} noIcon={true} handleChangeCoin={handleChangeCoin} />
             {coinIdx === 1 ?
               <ButtonPrimary
-                sizeClass={`px-4 sm:px-5 ${atomAddress && `bg-transparent border border-[#33FF00] text-[#33FF00] hover:text-black`}`}
+                className={`px-4 sm:px-5 ${atomAddress && `bg-transparent border border-[#33FF00] text-[#33FF00] hover:text-black`}`}
                 onClick={connectAtomWallet}
               >
                 <IoWalletOutline size={22} />
@@ -104,7 +104,7 @@ const ChainItem = (props) => {
                 <img src={qr} css={{ width: 200, height: 200 }} alt="xumm-qr" />
               ) : (
                 <ButtonPrimary
-                  sizeClass={`px-4 sm:px-5 ${qr && `bg-transparent border border-[#33FF00] text-[#33FF00] hover:text-black`}`}
+                className={`px-4 sm:px-5 ${qr && `bg-transparent border border-[#33FF00] text-[#33FF00] hover:text-black`}`}
                   onClick={signIn}
                 >
                   <IoWalletOutline size={22} />

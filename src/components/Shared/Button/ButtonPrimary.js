@@ -7,7 +7,7 @@ const ButtonPrimary = ({
 }) => {
   return (
     <Button
-      className={`ttnc-ButtonPrimary disabled:bg-opacity-70 rounded-lg bg-primary-1000 hover:bg-primary-1010 text-gray-900 ${className}`}
+      className={`ttnc-ButtonPrimary disabled:bg-opacity-70 rounded-lg bg-primary-1000 hover:bg-primary-1010 text-black ${className}`}
       {...args}
     />
   );
