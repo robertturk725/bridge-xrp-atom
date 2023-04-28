@@ -25,6 +25,7 @@
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.9",
+    "xumm": "^1.3.13",
     "xumm-react": "^1.4.2"
   },
   "scripts": {

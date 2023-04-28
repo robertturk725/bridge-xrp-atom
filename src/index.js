@@ -24,7 +24,7 @@ const kplrConfig = {
 
 const xummConfig = {
   url: 'https://xumm.app/api/v1/',
-  getToken: () => "58717494-7586-45eb-96ea-95634ec8d336"
+  getToken: () => "91089b94-e296-4540-858a-cf109c9a03a3"
 };
 
 
@@ -35,11 +35,11 @@ ReactDOM.render(
         <ThemeProvider theme={theme}>
           <Provider store={store}>
             <CssBaseline />
-            <XummProvider config={xummConfig}>
+            {/* <XummProvider config={xummConfig}> */}
               <CosmosProvider walletOptions={kplrConfig}>
                 <App />
               </CosmosProvider>
-            </XummProvider>
+            {/* </XummProvider> */}
           </Provider>
         </ThemeProvider>
       </MuiThemeProvider>

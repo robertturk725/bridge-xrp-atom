@@ -32,7 +32,7 @@ const ChainItem = (props) => {
   const dispatch = useDispatch();
 
   const { signIn, signInData: { xummPayload } = {} } = useSignIn();
-  let qr = xummPayload?.refs?.qr_png;
+  const qr = xummPayload?.refs?.qr_png;
 
   const {
     connectTo,

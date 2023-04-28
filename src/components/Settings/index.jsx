@@ -1,4 +1,3 @@
-import { useState, useRef, useEffect, Fragment } from 'react';
 import cn from 'classnames'
 import { FiSettings } from 'react-icons/fi';
 // import 'slick-carousel/slick/slick.css';

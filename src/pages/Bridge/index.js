@@ -19,14 +19,18 @@ import {
   changeStart,
   changeDest,
   changeAmount,
+  changeReceiveAmountAndNotice,
+  
   swapAsync,
   selectStartCoinIdx,
   selectDestCoinIdx,
   selectAmount,
   selectReceivedAmount,
   selectExchangeNotice,
-  changeReceiveAmountAndNotice,
+  selectAtomAddress,
+  selectXRPAddress
 } from '../../redux/bridge';
+
 import { sendAtom } from '../../api/sendAtom';
 
 const Bridge = () => {
@@ -35,10 +39,9 @@ const Bridge = () => {
   const amount = useSelector(selectAmount);
   const receivedAmount = useSelector(selectReceivedAmount);
   const exchangeNotice = useSelector(selectExchangeNotice);
+  const atomAddress = useSelector(selectAtomAddress);
+  const xrpAddress = useSelector(selectXRPAddress);
   const dispatch = useDispatch();
-
-  const [atomAddress, setAtomAddress] = useState("");
-  const [xrpAddress, setXrpAddress] = useState("");
 
   const handleChangeStart = (event) => {
     // useDispatch
@@ -69,14 +72,6 @@ const Bridge = () => {
     // sendAtom(address, amount);
   };
 
-  const handleKplrConnect = (address) => {
-    setAtomAddress(address);
-  }
-
-  const handleXrpConnect = (address) => {
-    setXrpAddress(address);
-  }
-
   return (
     <div className="bg-white text-base dark:bg-[#181B18] text-neutral-900 dark:text-neutral-200">
       <Wrapper>
@@ -100,7 +95,6 @@ const Bridge = () => {
                   handleChangeCoin={handleChangeStart}
                   amount={amount}
                   handleChangeAmount={handleChangeAmount}
-                  handleConnect={handleKplrConnect}
                 />
                 <Box className='relative flex items-center justify-center'>
                   <Divider className='absolute bg-[#555555] top-6 mx-[55px] w-[90%]' />
@@ -113,8 +107,6 @@ const Bridge = () => {
                   coinIdx={destCoinIdx}
                   handleChangeCoin={handleChangeDest}
                   amount={receivedAmount}
-                  handleChangeAmount={handleChangeAmount}
-                  handleConnect={handleXrpConnect}
                   readOnly={true}
                 />
                 <CustomButton handleAction={handleApprove} />

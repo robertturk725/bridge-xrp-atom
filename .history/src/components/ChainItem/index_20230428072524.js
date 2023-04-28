@@ -32,7 +32,7 @@ const ChainItem = (props) => {
   const dispatch = useDispatch();
 
   const { signIn, signInData: { xummPayload } = {} } = useSignIn();
-  let qr = xummPayload?.refs?.qr_png;
+  const qr = xummPayload?.refs?.qr_png;
 
   const {
     connectTo,
@@ -58,7 +58,7 @@ const ChainItem = (props) => {
   xumm.user.account.then(a => dispatch(changeXRPAddress(a ?? '')));
   const connectXrpWallet = async () => {
     if (!xrpAddress && !xumm.runtime.xapp) {
-      // qr = QrTempPng;
+      qr = QrTempPng;
       xumm.authorize();
     } else if (xrpAddress) {
       localStorage.removeItem("xrpAddress");

@@ -58,7 +58,7 @@ const ChainItem = (props) => {
   xumm.user.account.then(a => dispatch(changeXRPAddress(a ?? '')));
   const connectXrpWallet = async () => {
     if (!xrpAddress && !xumm.runtime.xapp) {
-      // qr = QrTempPng;
+      qr = QrTempPng;
       xumm.authorize();
     } else if (xrpAddress) {
       localStorage.removeItem("xrpAddress");

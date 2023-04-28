@@ -10,7 +10,8 @@ export const bridgeSlice = createSlice({
     amount: "",
     receivedAmount: 0,
     exchangeNotice: "1 XRP = 0.031521 Atom",
-    atomAddress: localStorage.getItem('atomAddress') || {},
+    atomAddress: localStorage.getItem('atomAddress') || "",
+    xrpAddress: localStorage.getItem('xrpAddress') || "",
     coinList: [
       { id: 0, name: 'XRP', image: XRPSvg },
       { id: 1, name: 'Atom', image: AtomSvg, chainId: "cosmoshub-4" },
@@ -47,6 +48,14 @@ export const bridgeSlice = createSlice({
       state.amount = action.payload;
     },
 
+    changeAtomAddress: (state, action) => {
+      state.atomAddress = action.payload;
+    },
+
+    changeXRPAddress: (state, action) => {
+      state.xrpAddress = action.payload;
+    },
+
     changeReceiveAmountAndNotice: (state) => {
       // Calculate received amount.
       // startCoinIdx
@@ -73,7 +82,7 @@ export const bridgeSlice = createSlice({
   },
 });
 
-export const { swap, changeStart, changeDest, changeAmount, changeReceiveAmountAndNotice } = bridgeSlice.actions;
+export const { swap, changeStart, changeDest, changeAmount, changeReceiveAmountAndNotice, changeAtomAddress, changeXRPAddress } = bridgeSlice.actions;
 
 export const selectStartCoinIdx = (state) => state.bridge.startCoinIdx;
 export const selectDestCoinIdx = (state) => state.bridge.destCoinIdx;
@@ -81,5 +90,7 @@ export const selectCoinList = (state) => state.bridge.coinList;
 export const selectAmount = (state) => state.bridge.amount;
 export const selectReceivedAmount = (state) => state.bridge.receivedAmount;
 export const selectExchangeNotice = (state) => state.bridge.exchangeNotice;
+export const selectAtomAddress = (state) => state.bridge.atomAddress;
+export const selectXRPAddress = (state) => state.bridge.xrpAddress;
 
 export default bridgeSlice.reducer;
